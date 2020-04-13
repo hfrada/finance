@@ -14,11 +14,11 @@ class CreateFinancial extends Migration
     public function up()
     {
         Schema::create('financial', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('type');
             $table->bigInteger('amount');
-            $table->integer('User_id');
-            $table->integer('Category_id');
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('category_id')->unsigned();
             $table->timestamps();
         });
     }
