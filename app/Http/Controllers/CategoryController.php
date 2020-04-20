@@ -13,9 +13,11 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Category::paginate();
+        return Category::where('category', 'like', "%{$request->category}%")
+        ->orderBy($request->sort_by ?? 'created_at', $request->sort_type ?? 'asc')
+        ->paginate();
     }
 
     /**

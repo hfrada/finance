@@ -16,17 +16,31 @@ class FinancialController extends Controller
      */
     public function index(Request $request)
     {
-        $name = $request->input('name', '');
-        $sortBy = $request->input('sort_by', 'amount');
+        $sortBy = $request->input('sort_by', 'created_at');
         $sortType = $request->input('sort_type', 'asc');
 
-        return DB::table('financial')
-            ->select('users.name', 'financial.amount', 'category.category')
+        $res = Financial::select(['financial.id', 'financial.type', 'financial.amount', 'financial.created_at', 'users.name as username', 'category.category'])
             ->join('users', 'financial.user_id', '=', 'users.id')
-            ->join('category', 'financial.category_id', '=', 'category.id')
-            ->where('name', 'like', '%' . $name .'%')
-            ->orderBy($sortBy, $sortType)
-            ->paginate();
+            ->join('category', 'financial.category_id', '=', 'category.id');
+        
+        $filter = [
+            'username' => 'users.name',
+            'category' => 'category.category',
+            'type' => 'financial.type',
+            'amount_min' => 'financial.amount|>=',
+            'amount_max' => 'financial.amount|<='
+        ];
+
+        foreach ($filter as $param => $opt) {
+            if ($request->{$param}) {
+                $opt = explode('|', $opt);
+                count($opt) > 1 ? 
+                $res->where($opt[0], $opt[1], $request->{$param}) :
+                $res->where($opt[0], $request->{$param});
+            }
+        }
+
+        return $res->orderBy($sortBy, $sortType)->paginate();
     }
 
     /**
