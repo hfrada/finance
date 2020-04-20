@@ -9,7 +9,8 @@ class Category extends Model
 	protected $table = 'category';
     protected $fillable = ['category'];
 
-    public function financial() {
+    public function financial() 
+    {
     	return $this->hasMany(Financial::class);
     }
 }

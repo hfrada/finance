@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Validator;
 use App\Financial;
 use Illuminate\Http\Request;
@@ -13,9 +14,19 @@ class FinancialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Financial::paginate();
+        $name = $request->input('name', '');
+        $sortBy = $request->input('sort_by', 'amount');
+        $sortType = $request->input('sort_type', 'asc');
+
+        return DB::table('financial')
+            ->select('users.name', 'financial.amount', 'category.category')
+            ->join('users', 'financial.user_id', '=', 'users.id')
+            ->join('category', 'financial.category_id', '=', 'category.id')
+            ->where('name', 'like', '%' . $name .'%')
+            ->orderBy($sortBy, $sortType)
+            ->paginate();
     }
 
     /**
@@ -29,7 +40,7 @@ class FinancialController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage.   
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
