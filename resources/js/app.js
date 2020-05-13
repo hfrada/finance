@@ -40,6 +40,9 @@ const routes = [
 	// category
  	{ path: '/category', name: 'categoryMain', component: require('./category/main.vue').default},
  	{ path: '/category/:id', name: 'categoryForm', component: require('./category/form.vue').default},
+ 	// financial
+ 	{ path: '/financial', name: 'financialMain', component: require('./financial/main.vue').default},
+ 	{ path: '/financial/:id', name: 'financialForm', component: require('./financial/form.vue').default},
 ];
 
 const router = new VueRouter({

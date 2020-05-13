@@ -2,8 +2,7 @@
 	<div>
 		<h1>{{ id == 'create' ? 'Create' : 'Update' }} Category</h1>
 		<div>
-			<label for="search">category</label>
-			<input type="text" name="search" v-model="data.category">
+			<input type="text" name="search" id="search" placeholder="Search by category ..." v-model="data.category">
 		</div>
 		<button v-on:click="id == 'create'? insertData() : updateData(id)">{{ id == 'create' ? 'Create' : 'Update' }}</button>
 	</div>
