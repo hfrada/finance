@@ -1,8 +1,6 @@
 <template>
 	<div>
-		<div>
-			<input type="text" placeholder="Search by category ..." name="search" v-model="search">
-		</div>
+		<search-data blog="category"></search-data>
 		<br>
 		<button v-on:click="$router.push({name: 'categoryForm', params:{ id: 'create' }})">Add New Data</button>
 		<br>
@@ -20,6 +18,7 @@
 <script>
 	// components
 	import dataTable from '../components/DataTableComponent.vue';
+	import searchData from '../components/SearchDataComponent.vue';
 	// mixin
 	import dataProcess from '../mixin/dataProcess.js'
 
@@ -27,6 +26,7 @@
 
 		components:{
             dataTable : dataTable,
+            searchData : searchData
         },
 
         mixins : [dataProcess],
@@ -36,34 +36,10 @@
 				search : null,
 				url : '/api/v1/category',
 				headers : [
-					{ name: "category" },
-					{ name: "action", disort : true },
+					{ name: "Category" },
+					{ name: "Action", disort : true },
 				],
 			}
 		},
-
-		methods:{
-
-			sortData(params)
-			{
-				if (sort == 'asc') sort = 'desc';
-				else sort = 'asc';
-
-				axios.get(`/api/v1/category?sort_by=` + params + `&sort_type=` + sort).then((res)=>{
-					this.data = res.data.data;
-
-				});
-			}
-		},
-
-		watch:{
-			search(val){
-				let query = Object.assign({}, this.$route.query);
-				query = Object.assign(query, { category: val })
-				this.$router.push({query: query});
-				this.loadData()
-			}
-		}
-
 	}
 </script>

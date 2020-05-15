@@ -1,24 +1,12 @@
 <template>
 	<div>
-		<div>
-			<input type="text" name="search" placeholder="Search by name ..." v-model="search">
-		</div>
+		<search-data blog="username"></search-data>
 		<br />
 		<button v-on:click="$router.push({name: 'financialForm', params: {id: 'create'}})">Add New Data</button>
 		<br />
-		<div>
-			<h1>Table Data Financial</h1>
-			<table border="1">
-				<tr>
-					<th v-on:click="sortData('created_at')">No</th>
-					<th v-on:click="sortData('username')">Name</th>
-					<th v-on:click="sortData('type')">Type</th>
-					<th v-on:click="sortData('amount')">Amount</th>
-					<th v-on:click="sortData('category')">Category</th>
-					<th>Action</th>
-				</tr>
-				<tr v-for="item in data">
-					<td>1</td>
+
+		<data-table caption="Table Data Financial" :headers="headers" :items="items" :pagination="pagination">
+			<template v-slot:item="{ item }">
 					<td>{{ item.username }}</td>
 					<td>{{ item.type }}</td>
 					<td>{{ item.amount }}</td>
@@ -26,64 +14,38 @@
 					<td>
 						<a v-on:click="$router.push({name : 'financialForm', params: {id : item.id}})">Edit</a> || <a v-on:click="deleteData(item.id)">Delete</a>
 					</td>
-				</tr>
-			</table>
-		</div>
+			</template>
+		</data-table>
 	</div>
 </template>
 <script>
-	var sort = 'asc';
+	import dataTable from '../components/DataTableComponent.vue';
+	import searchData from '../components/SearchDataComponent.vue';
+	import dataProcess from '../mixin/dataProcess.js';
 
 	export default 
 	{
+		components:
+		{
+			dataTable : dataTable,
+			searchData : searchData
+		},
+
+		mixins : [dataProcess],
+
 		data() 
 		{
 			return {
-				data : [],
-				search : null
+				search : null,
+				url : '/api/v1/finance',
+				headers : [
+					{ name : "Username" },
+					{ name : "Type" },
+					{ name : "Amount" },
+					{ name : "Category" },
+					{ name : "Action", disort : true }
+				]
 			}
 		},
-
-		methods : 
-		{
-			getData(search = '')
-			{
-				axios.get(`/api/v1/finance?username=${search}`).then((res)=>{
-					this.data = res.data.data;
-				});
-			},
-
-			deleteData(id)
-			{
-				axios.delete(`/api/v1/finance/${id}`).then((res)=>{
-					this.getData();
-				});
-			},
-
-			sortData(params)
-			{
-				if (sort == 'asc') sort = 'desc';
-				else sort = 'asc';
-
-				axios.get(`/api/v1/finance?sort_by=`+ params + `&sort_type=` + sort).then((res)=>{
-					this.data = res.data.data;
-				});
-			}
-		},
-
-		mounted()
-		{
-			this.getData();
-		},
-
-		watch :
-		{
-			search(val)
-			{
-				this.getData(val);
-			}
-		}
-
-
 	}
 </script>
