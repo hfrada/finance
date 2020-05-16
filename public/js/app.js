@@ -2124,6 +2124,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['blog'],
+  data: function data() {
+    return {
+      search: null
+    };
+  },
   methods: {
     searchData: function searchData(val) {
       var query = Object.assign({}, this.$route.query);

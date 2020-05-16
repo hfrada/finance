@@ -8,6 +8,13 @@
 	{
 		props : ['blog'],
 
+		data()
+		{
+			return {
+				search : null
+			}
+		},
+
 		methods :
 		{
 			searchData(val)
