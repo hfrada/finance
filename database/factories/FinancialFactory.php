@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
 
 $factory->define(Financial::class, function (Faker $faker) {
 	return [
-		'type' => $faker->word,
+		'type' => (($faker->numberBetween($min = 1, $max = 2) == 1) ? 'wallet' : 'pay'),
         'amount' => $faker->numberBetween($min = 1000, $max = 999999),
         'user_id' => $faker->numberBetween($min = 1, $max = 10),
         'category_id' => $faker->numberBetween($min = 1, $max = 10),

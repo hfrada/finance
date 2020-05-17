@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use DB;
 use Validator;
 use App\Financial;
 use Illuminate\Http\Request;

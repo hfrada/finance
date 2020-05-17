@@ -38276,7 +38276,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("dashboard")]
+          [_vm._v("Dashboard")]
         )
       ]),
       _vm._v(" "),
@@ -38290,7 +38290,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("category")]
+          [_vm._v("Category")]
         )
       ]),
       _vm._v(" "),
@@ -38304,8 +38304,26 @@ var render = function() {
               }
             }
           },
-          [_vm._v("financial")]
+          [_vm._v("Financial")]
         )
+      ]),
+      _vm._v(" "),
+      _c("ul", [
+        _c("li", [
+          _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  _vm.$router
+                    .push({ name: "financialStatisticMain" })
+                    .catch(function() {})
+                }
+              }
+            },
+            [_vm._v("Financial Statistic")]
+          )
+        ])
       ])
     ])
   ])
@@ -53764,7 +53782,9 @@ var routes = [// dashboard
   path: '/financial/:id',
   name: 'financialForm',
   component: __webpack_require__(/*! ./financial/form.vue */ "./resources/js/financial/form.vue")["default"]
-}];
+} // { path: '/financial/statistic', name: 'financialStatisticMain', component: require('./financial/financialStatistic/main.vue').default},
+// { path: '/financial/statistic', name: 'financialStatisticForm', component: require('./financial/financialStatistic/form.vue').default},
+];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   root: '/',
   routes: routes

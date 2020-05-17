@@ -43,6 +43,8 @@ const routes = [
  	// financial
  	{ path: '/financial', name: 'financialMain', component: require('./financial/main.vue').default},
  	{ path: '/financial/:id', name: 'financialForm', component: require('./financial/form.vue').default},
+ 	// { path: '/financial/statistic', name: 'financialStatisticMain', component: require('./financial/financialStatistic/main.vue').default},
+ 	// { path: '/financial/statistic', name: 'financialStatisticForm', component: require('./financial/financialStatistic/form.vue').default},
 ];
 
 const router = new VueRouter({

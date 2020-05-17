@@ -23,4 +23,6 @@ Route::prefix('v1')->group(function() {
 	Route::resource('category', 'CategoryController');
 	Route::resource('finance', 'FinancialController');
 
+	Route::get('statistic/finance', 'StatisticFinancialController@index');
 });
+
