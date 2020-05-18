@@ -1,7 +1,7 @@
 <template>
-	<div>
-		<input type="text" name="search" placeholder="Search by name ..." v-model="search" v-on:keyup="searchData(search)">
-	</div>
+	<v-text-field placeholder="Search something in table ..." v-model="search" v-on:keyup="searchData(search)">
+	 	<v-icon slot="append">mdi-magnify</v-icon>
+	</v-text-field>
 </template>
 <script>
 	export default

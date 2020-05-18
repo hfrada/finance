@@ -1,12 +1,45 @@
 <template>
-	<div>
-		<ul>
-			<li><a v-on:click="$router.push('/dashboard').catch(()=>{})">Dashboard</a></li>
-			<li><a v-on:click="$router.push({name: 'categoryMain'}).catch(()=>{})">Category</a></li>
-			<li><a v-on:click="$router.push({name: 'financialMain'}).catch(()=>{})">Financial</a></li>
-			<ul>
-				<li><a v-on:click="$router.push({name: 'financialStatisticMain'}).catch(()=>{})">Financial Statistic</a></li>
-			</ul>
-		</ul>
-	</div>
+    <v-navigation-drawer v-model="drawer" :mini-variant.sync="mini" fixed permanent app :right="null">
+    	<v-list-item class="px-2">
+    		<v-list-item-avatar>
+    			<v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>	
+    		</v-list-item-avatar>
+
+    	<v-list-item-title>John Leider</v-list-item-title>
+
+    	<v-btn icon @click.stop="mini = !mini">
+    		<v-icon>mdi-chevron-left</v-icon>
+    	</v-btn>
+	    </v-list-item>
+
+	    <v-divider></v-divider>
+
+	    <v-list dense>
+	    	<v-list-item v-for="item in items" :key="item.title" link @click="$router.push(item.link).catch(()=>{})">
+	    		<v-list-item-icon>
+	    			<v-icon>{{ item.icon }}</v-icon>
+	    		</v-list-item-icon>
+
+				<v-list-item-content>
+					<v-list-item-title>{{ item.title }}</v-list-item-title>
+				</v-list-item-content>
+			</v-list-item>
+		</v-list>
+	</v-navigation-drawer>
 </template>
+
+<script>
+  export default {
+    data () {
+      return {
+        drawer: true,
+        items: [
+          { title: 'Dasboard', icon: 'mdi-home-city', link : '/' },
+          { title: 'Category', icon: 'mdi-tag-multiple', link : '/category' },
+          { title: 'Financial', icon: 'mdi-cash-multiple', link : '/financial' },
+        ],
+        mini: true,
+      }
+    },
+  }
+</script>

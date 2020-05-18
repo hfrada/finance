@@ -36,7 +36,7 @@ export default {
         paginate(pagination){
         	this.pagination.current = pagination.current_page;
 			this.pagination.total = pagination.last_page;
-			this.pagination.next = pagination.next_page_url ? pagination.next_page_url.split("=").pop() : 1;
+			this.pagination.next = pagination.next_page_url ? pagination.next_page_url.split("=").pop() : pagination.last_page;
 			this.pagination.prev = pagination.prev_page_url ? pagination.prev_page_url.split("=").pop() : 1;
         },
 

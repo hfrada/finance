@@ -10,9 +10,12 @@ window.Vue = require('vue');
 
 
 import VueRouter from 'vue-router';
-
+import Vuetify from 'vuetify';
+import 'vuetify/dist/vuetify.min.css';
+import '@mdi/font/css/materialdesignicons.css';
 
 Vue.use(VueRouter);
+Vue.use(Vuetify);
 
 /**
  * The following block of code may be used to automatically register your
@@ -36,7 +39,7 @@ Vue.component('navbar-component', require('./components/NavbarComponent.vue').de
 
 const routes = [
 	// dashboard
-	{ path: '/dashboard', name: 'dashboard', component: require('./components/ExampleComponent.vue').default},
+	{ path: '/', name: 'dashboard', component: require('./home.vue').default},
 	// category
  	{ path: '/category', name: 'categoryMain', component: require('./category/main.vue').default},
  	{ path: '/category/:id', name: 'categoryForm', component: require('./category/form.vue').default},
@@ -55,4 +58,5 @@ const router = new VueRouter({
 const app = new Vue({
     el: '#app',
     router: router,
+    vuetify: new Vuetify(),
 });

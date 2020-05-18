@@ -1,21 +1,26 @@
 <template>
-	<div>
-		<h1>{{ id == 'create' ? 'Create' : 'Update' }} Category</h1>
-		<div>
-			<input type="text" name="search" id="search" placeholder="Search by category ..." v-model="data.category">
-		</div>
-		<button v-on:click="id == 'create'? insertData() : updateData(id)">{{ id == 'create' ? 'Create' : 'Update' }}</button>
-	</div>
+	<v-container>
+    	<v-breadcrumbs :items="breadcrumbs"></v-breadcrumbs>
+
+    	<v-text-field v-model="data.category" label="Category" required></v-text-field>
+
+    	<v-btn color="primary" v-on:click="id == 'create'? insertData() : updateData(id)">{{ id == 'create' ? 'Create' : 'Update' }}</v-btn>
+	</v-container>
 </template>
 <script>
 	export default{
 
 		data(){
+			let id = this.$route.params.id;
 			return{
 				data : {
 					category : null,
 				},
-				id : this.$route.params.id,
+				id : id,
+				breadcrumbs : [
+					{ text : 'Category', disabled : false, href : '/#/category' },
+					{ text : id == 'create' ? 'Create' : 'Update', disabled : true},
+				]
 			}
 		},
 

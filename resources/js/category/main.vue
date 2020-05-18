@@ -1,19 +1,29 @@
 <template>
-	<div>
-		<search-data blog="category"></search-data>
-		<br>
-		<button v-on:click="$router.push({name: 'categoryForm', params:{ id: 'create' }})">Add New Data</button>
-		<br>
-		<data-table caption="Table Category" :headers="headers" :items="items" :pagination="pagination">
-			<template v-slot:item="{ item }">
-				<td>{{ item.category }}</td>
-				<td>
-					<a v-on:click="$router.push({name: 'categoryForm', params:{ id: item.id }})">edit</a> ||
-					<a v-on:click="deleteData(item.id)">delete</a>
-				</td>
-			</template>
-		</data-table>
-	</div>
+	<v-container>
+		<v-breadcrumbs :items="breadcrumbs"></v-breadcrumbs>
+		
+    	<v-row>
+    		<v-col cols="12" sm="2" class="pt-8">
+    			<v-btn block small color="primary" v-on:click="$router.push({name: 'categoryForm', params:{ id: 'create' }})">create</v-btn>
+    		</v-col>
+
+    		<v-col cols="12" sm="10">
+    			<search-data blog="category"></search-data>
+    		</v-col>
+
+    		<v-col sm="12">
+    			<data-table :headers="headers" :items="items" :pagination="pagination">
+					<template v-slot:item="{ item }">
+						<td>{{ item.category }}</td>
+						<td>
+							<v-btn x-small color="primary" v-on:click="$router.push({name: 'categoryForm', params:{ id: item.id }})">edit</v-btn> 
+							<v-btn x-small color="error" v-on:click="deleteData(item.id)">delete</v-btn>
+						</td>
+					</template>
+				</data-table>
+    		</v-col>
+    	</v-row>
+	</v-container>
 </template>
 <script>
 	// components
@@ -36,9 +46,12 @@
 				search : null,
 				url : '/api/v1/category',
 				headers : [
-					{ name: "Category" },
+					{ name: "Category", key : "category"},
 					{ name: "Action", disort : true },
 				],
+				breadcrumbs : [
+					{ text : 'Category', disabled : true },
+				]
 			}
 		},
 	}
