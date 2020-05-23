@@ -1,8 +1,6 @@
 <template>
 	<v-select 
-		label="Category"
-		item-text="category" 
-		item-value="id" 
+		label="User"
 		v-model="value"
 		:items="items"
 		>
@@ -20,7 +18,7 @@
 		{
 			return {
 				value : null,
-				url : '/api/v1/category?no_filter=true'
+				url : '/api/v1/users/names'
 			}
 		},
 

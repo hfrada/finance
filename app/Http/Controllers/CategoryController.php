@@ -15,9 +15,9 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        return Category::where('category', 'like', "%{$request->category}%")
-        ->orderBy($request->sort_by ?? 'created_at', $request->sort_type ?? 'asc')
-        ->paginate();
+        $category = $request->no_filter ? new Category : Category::where('category', 'like', "%{$request->category}%");
+        $category->orderBy($request->sort_by ?? 'created_at', $request->sort_type ?? 'asc');
+        return $request->no_filter ? ['data' => $category->get()] : $category->paginate();
     }
 
     /**

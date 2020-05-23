@@ -24,7 +24,7 @@ class FinancialController extends Controller
         
         $filter = [
             'username' => 'users.name',
-            'category' => 'category.category',
+            'category' => 'category.id',
             'type' => 'financial.type',
             'amount_min' => 'financial.amount|>=',
             'amount_max' => 'financial.amount|<='

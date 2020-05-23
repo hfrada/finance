@@ -24,5 +24,9 @@ Route::prefix('v1')->group(function() {
 	Route::resource('finance', 'FinancialController');
 
 	Route::get('statistic/finance', 'StatisticFinancialController@index');
+	Route::get('statistic/period-chart', 'StatisticFinancialController@periodChart');
+	Route::get('users/names', function(){
+		return [ 'data' => App\User::pluck('name')];
+	});
 });
 
