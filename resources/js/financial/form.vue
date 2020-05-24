@@ -53,7 +53,7 @@
 		{
 			insertData()
 			{
-				axios.post(`/api/v1/finance`, {
+				axios.post(`/v1/finance`, {
 					type : this.data.type,
 					amount : this.data.amount,
 					user_id : this.data.user_id,
@@ -65,7 +65,7 @@
 
 			updateData(id)
 			{
-				axios.put(`/api/v1/finance/${id}`, {
+				axios.put(`/v1/finance/${id}`, {
 					type : this.data.type,
 					amount : this.data.amount,
 					user_id : this.data.user_id,
@@ -77,7 +77,7 @@
 
 			getData(id)
 			{
-				axios.get(`api/v1/finance/${id}`).then((res)=>{
+				axios.get(`/v1/finance/${id}`).then((res)=>{
 						this.data = res.data
 				});
 			}

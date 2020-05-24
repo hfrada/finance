@@ -20,7 +20,7 @@
 		{
 			return {
 				value : null,
-				url : '/api/v1/category?no_filter=true'
+				url : '/v1/category?no_filter=true'
 			}
 		},
 

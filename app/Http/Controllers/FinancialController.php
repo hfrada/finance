@@ -40,8 +40,7 @@ class FinancialController extends Controller
             }
         }
 
-        // return $res->orderBy($sortBy, $sortType)->paginate();
-        return optional(Auth::user());
+        return $res->orderBy($sortBy, $sortType)->paginate();
     }
 
     /**
@@ -65,7 +64,6 @@ class FinancialController extends Controller
         $validator = Validator::make($request->all(), [
             'type' => 'required',
             'amount' => 'required',
-            // 'user_id' => 'required',
             'category_id' => 'required'
         ]);
 

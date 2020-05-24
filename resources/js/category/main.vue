@@ -44,7 +44,7 @@
 		data(){
 			return{
 				search : null,
-				url : '/api/v1/category',
+				url : '/v1/category',
 				headers : [
 					{ name: "Category", key : "category"},
 					{ name: "Action", disort : true },

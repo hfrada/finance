@@ -2,7 +2,7 @@
     <v-row>
         <v-col cols="12" sm="6" class="pa-8 mx-auto" v-for="dboard in dashboardConfig" v-bind:key="dboard.dateFormat">
             <dashboard-chart 
-            :url="'/api/v1/statistic/period-chart?tFormat='+dboard.dateFormat"
+            :url="'/v1/statistic/period-chart?tFormat='+dboard.dateFormat"
             :caption="dboard.caption"
             ></dashboard-chart>
         </v-col>

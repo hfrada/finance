@@ -20,3 +20,13 @@ Route::middleware('auth:api')->get('/', function () {
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
+
+Route::prefix('v1')->group(function() {
+	Route::get('statistic/finance', 'StatisticFinancialController@index');
+	Route::get('statistic/period-chart', 'StatisticFinancialController@periodChart');
+	Route::get('users/names', function(){
+		return [ 'data' => App\User::pluck('name')];
+	});
+	Route::resource('category', 'CategoryController');
+	Route::resource('finance', 'FinancialController');
+});

@@ -26,17 +26,17 @@
 
 		methods:{
 			insertData(){
-				axios.post(`/api/v1/category`, this.data).then((res)=>{
+				axios.post(`/v1/category`, this.data).then((res)=>{
 					this.$router.push({name: 'categoryMain'})
 				});	
 			},
 			updateData(id){
-				axios.put(`/api/v1/category/${id}`, this.data).then((res)=>{
+				axios.put(`/v1/category/${id}`, this.data).then((res)=>{
 					this.$router.push({name: 'categoryMain'})
 				});	
 			},
 			getData(id){
-				axios.get(`/api/v1/category/${id}`).then((res)=>{
+				axios.get(`/v1/category/${id}`).then((res)=>{
 					this.data = res.data
 				});	
 			}

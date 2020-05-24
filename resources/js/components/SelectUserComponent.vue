@@ -18,7 +18,7 @@
 		{
 			return {
 				value : null,
-				url : '/api/v1/users/names'
+				url : '/v1/users/names'
 			}
 		},
 
