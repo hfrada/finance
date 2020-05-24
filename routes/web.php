@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/', function () {
+Route::middleware('auth:web')->get('/', function () {
     return view('vue');
 });
 
@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index');
 
-Route::prefix('v1')->group(function() {
+Route::middleware('auth:web')->prefix('v1')->group(function() {
 	Route::get('statistic/finance', 'StatisticFinancialController@index');
 	Route::get('statistic/period-chart', 'StatisticFinancialController@periodChart');
 	Route::get('users/names', function(){
