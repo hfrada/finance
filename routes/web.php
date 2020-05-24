@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::middleware('auth:api')->get('/', function () {
     return view('vue');
 });
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index');

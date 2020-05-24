@@ -2,20 +2,32 @@
 	<v-container>
     	<v-breadcrumbs :items="breadcrumbs"></v-breadcrumbs>	
 
-    	<v-text-field v-model="data.type" label="Type" required></v-text-field>	
+    	<v-select
+    		v-model="data.type"
+    		label="Type"
+    		:items="['pay', 'amount']">
+    	</v-select>
 
     	<v-text-field v-model="data.amount" label="Amount" required></v-text-field>	
 
-    	<v-text-field v-model="data.user_id" label="User ID" required></v-text-field>	
+    	<!-- <v-text-field v-model="data.user_id" label="User ID" required></v-text-field>	 -->
 
-    	<v-text-field v-model="data.category_id" label="Category ID" required></v-text-field>	
+    	<select-category v-model="data.category_id"></select-category>
 
     	<v-btn color="primary" v-on:click="id == 'create'? insertData() : updateData(id)">{{ id == 'create' ? 'Create' : 'Update' }}</v-btn>
 	</v-container>
 </template>
 <script>
+
+	import selectCategory from '../components/SelectCategoryComponent.vue';
+
 	export default
 	{
+		components :
+		{
+			selectCategory : selectCategory
+		},
+
 		data() 
 		{
 			let id = this.$route.params.id;
@@ -24,14 +36,14 @@
 				data : {
 					type : null,
 					amount : null,
-					user_id : null,
+					// user_id : null,
 					category_id : null
 				},
 
 				id : id,
 
 				breadcrumbs : [
-					{ text : 'Financial', disabled : false, href : '/#/category' },
+					{ text : 'Financial', disabled : false, href : '/#/financial' },
 					{ text : id == 'create' ? 'Create' : 'Update', disabled : true},
 				],
 			}

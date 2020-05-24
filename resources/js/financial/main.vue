@@ -3,20 +3,16 @@
 		<v-breadcrumbs :items="breadcrumbs"></v-breadcrumbs>
 		
     	<v-row>
-    		<!-- <v-col cols="12" sm="10">
-    			<search-data blog="username"></search-data>
-    		</v-col> -->
-
     		<v-col cols="12" sm="12">
     			<h4>Filter Select</h4>
     		</v-col>
 
     		<v-col cols="12" sm="4">
-    			<select-user v-model="filter.username" type="number" label="Amount Min."></select-user>
+    			<select-user v-model="filter.username" type="number" label="Username"></select-user>
     		</v-col>
 
     		<v-col cols="12" sm="4">
-    			<select-category v-model="filter.category" type="number" label="Amount Min."></select-category>
+    			<select-category v-model="filter.category" type="number" label="Category"></select-category>
     		</v-col>
 
     		<v-col cols="12" sm="4">
@@ -48,7 +44,7 @@
     		</v-col>
 
     		<v-col cols="12" sm="2" class="pt-8">
-    			<v-btn block small color="primary" v-on:click="dataFilter()">filter</v-btn>
+    			<v-btn block small color="info" v-on:click="dataFilter()">filter</v-btn>
     		</v-col>
 
     		<v-col sm="12" class="pt-8">
@@ -137,6 +133,7 @@
 					amount_min : null,
 					amount_max : null,
 				}
+
 				this.dataFilter()
 			}
 		},

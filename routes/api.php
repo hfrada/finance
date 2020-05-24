@@ -20,8 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::prefix('v1')->group(function() {
 	
-	Route::resource('category', 'CategoryController');
-	Route::resource('finance', 'FinancialController');
+	Route::middleware('auth:web')->resource('category', 'CategoryController');
+	Route::middleware('auth:web')->resource('finance', 'FinancialController');
 
 	Route::get('statistic/finance', 'StatisticFinancialController@index');
 	Route::get('statistic/period-chart', 'StatisticFinancialController@periodChart');

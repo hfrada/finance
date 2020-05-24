@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Validator;
 use App\Financial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FinancialController extends Controller
 {
@@ -39,7 +40,8 @@ class FinancialController extends Controller
             }
         }
 
-        return $res->orderBy($sortBy, $sortType)->paginate();
+        // return $res->orderBy($sortBy, $sortType)->paginate();
+        return optional(Auth::user());
     }
 
     /**
@@ -63,9 +65,11 @@ class FinancialController extends Controller
         $validator = Validator::make($request->all(), [
             'type' => 'required',
             'amount' => 'required',
-            'user_id' => 'required',
+            // 'user_id' => 'required',
             'category_id' => 'required'
         ]);
+
+        $request->merge(['user_id' => Auth::user()->id]);
 
         if ($validator->fails())
             return response([
