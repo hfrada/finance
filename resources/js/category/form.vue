@@ -26,13 +26,27 @@
 
 		methods:{
 			insertData(){
-				axios.post(`/v1/category`, this.data).then((res)=>{
-					this.$router.push({name: 'categoryMain'})
+				axios.post(`/v1/category`, this.data).then((res) => {
+					this.$router.push({name: 'categoryMain'});
+					this.$toastr.success('Data Created!', 'Success!');
+					toastr.options = {'closeButton' : true}
+				}).catch((err) => {
+					err.response.data.messages.forEach((message) => {
+						this.$toastr.error(message, 'Error!');
+						toastr.options = {'closeButton' : true}
+					});
 				});	
 			},
 			updateData(id){
 				axios.put(`/v1/category/${id}`, this.data).then((res)=>{
-					this.$router.push({name: 'categoryMain'})
+					this.$router.push({name: 'categoryMain'});
+					this.$toastr.success('Data Edited!', 'Success!');
+					toastr.options = {'closeButton' : true}
+				}).catch((err) => {
+					err.response.data.messages.forEach((message) => {
+						this.$toastr.error(message, 'Error!');
+						toastr.options = {'closeButton' : true}
+					});
 				});	
 			},
 			getData(id){

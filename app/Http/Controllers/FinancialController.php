@@ -19,16 +19,18 @@ class FinancialController extends Controller
         $sortBy = $request->input('sort_by', 'created_at');
         $sortType = $request->input('sort_type', 'asc');
 
-        $res = Financial::select(['financial.id', 'financial.type', 'financial.amount', 'financial.created_at', 'users.name as username', 'category.category'])
-            ->join('users', 'financial.user_id', '=', 'users.id')
-            ->join('category', 'financial.category_id', '=', 'category.id');
-        
+        $res = Financial::join('users', 'financial.user_id', '=', 'users.id')
+            ->join('category', 'financial.category_id', '=', 'category.id')
+            ->select(['financial.id', 'financial.type', 'financial.amount', 'financial.created_at', 'users.name as username', 'category.category']);
+
         $filter = [
             'username' => 'users.name',
             'category' => 'category.id',
             'type' => 'financial.type',
             'amount_min' => 'financial.amount|>=',
-            'amount_max' => 'financial.amount|<='
+            'amount_max' => 'financial.amount|<=',
+            'date_min' => 'financial.created_at|>=',
+            'date_max' => 'financial.created_at|<=',
         ];
 
         foreach ($filter as $param => $opt) {

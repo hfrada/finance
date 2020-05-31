@@ -10,8 +10,6 @@
 
     	<v-text-field v-model="data.amount" label="Amount" required></v-text-field>	
 
-    	<!-- <v-text-field v-model="data.user_id" label="User ID" required></v-text-field>	 -->
-
     	<select-category v-model="data.category_id"></select-category>
 
     	<v-btn color="primary" v-on:click="id == 'create'? insertData() : updateData(id)">{{ id == 'create' ? 'Create' : 'Update' }}</v-btn>
@@ -36,7 +34,6 @@
 				data : {
 					type : null,
 					amount : null,
-					// user_id : null,
 					category_id : null
 				},
 
@@ -53,13 +50,19 @@
 		{
 			insertData()
 			{
-				axios.post(`/v1/finance`, {
+					axios.post(`/v1/finance`, {
 					type : this.data.type,
 					amount : this.data.amount,
-					user_id : this.data.user_id,
 					category_id : this.data.category_id
 				}).then((res)=>{
-					this.$router.push({name : 'financialMain'})
+					this.$router.push({name : 'financialMain'});
+					this.$toastr.success('Data Created!', 'Success!');
+					toastr.options = {'closeButton' : true}
+				}).catch((err) => {
+					err.response.data.messages.forEach((message) => {
+						this.$toastr.error(message, 'Error!');
+						toastr.options = {'closeButton' : true}
+					});
 				});
 			},
 
@@ -68,10 +71,16 @@
 				axios.put(`/v1/finance/${id}`, {
 					type : this.data.type,
 					amount : this.data.amount,
-					user_id : this.data.user_id,
 					category_id : this.data.category_id
 				}).then((res)=>{
-					this.$router.push({name : 'financialMain'})
+					this.$router.push({name : 'financialMain'});
+					this.$toastr.success('Data Edited!', 'Success!');
+					toastr.options = {'closeButton' : true}
+				}).catch((err) => {
+					err.response.data.message.forEach((message) => {
+						this.$toastr.error(message, 'Error!');
+						toastr.options = {'closeButton' : true}
+					})
 				});
 			},
 

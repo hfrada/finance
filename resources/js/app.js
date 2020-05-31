@@ -8,14 +8,19 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-
+import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Vuetify from 'vuetify';
+import VueToastr2 from 'vue-toastr-2';
 import 'vuetify/dist/vuetify.min.css';
 import '@mdi/font/css/materialdesignicons.css';
+import 'vue-toastr-2/dist/vue-toastr-2.min.css';
+
+window.toastr = require('toastr');
 
 Vue.use(VueRouter);
 Vue.use(Vuetify);
+Vue.use(VueToastr2);
 
 /**
  * The following block of code may be used to automatically register your

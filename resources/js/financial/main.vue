@@ -3,20 +3,16 @@
 		<v-breadcrumbs :items="breadcrumbs"></v-breadcrumbs>
 		
     	<v-row>
-    		<!-- <v-col cols="12" sm="10">
-    			<search-data blog="username"></search-data>
-    		</v-col> -->
-
     		<v-col cols="12" sm="12">
     			<h4>Filter Select</h4>
     		</v-col>
 
     		<v-col cols="12" sm="4">
-    			<select-user v-model="filter.username" type="number" label="Amount Min."></select-user>
+    			<select-user v-model="filter.username" type="number" label="Username"></select-user>
     		</v-col>
 
     		<v-col cols="12" sm="4">
-    			<select-category v-model="filter.category" type="number" label="Amount Min."></select-category>
+    			<select-category v-model="filter.category" type="number" label="Category"></select-category>
     		</v-col>
 
     		<v-col cols="12" sm="4">
@@ -33,6 +29,60 @@
 
     		<v-col cols="12" sm="4">
     			<v-text-field v-model="filter.amount_max" type="number" label="Amount Max."></v-text-field>
+    		</v-col>
+
+    		<v-col cols="12" sm="12">
+    			<h4>Filter Date</h4>
+    		</v-col>
+
+    		<v-col cols="12" sm="4">
+    			<v-menu
+	    			ref="menu1"
+	    			v-model="menu1"
+	    			:close-on-content-click="false"
+	    			:return-value.sync="filter.date_min"
+	    			transition="scale-transition"
+	    			offset-y
+	    			max-width="290px">
+    				<template v-slot:activator="{ on }">
+    					<v-text-field
+    						v-model="filter.date_min"
+    						label="Date Min."
+    						prepend-icon="mdi-calendar-multiple"
+    						readonly
+    						v-on="on"></v-text-field>
+    				</template>
+    				<v-date-picker v-model="filter.date_min">
+	    				<v-spacer></v-spacer>
+	    				<v-btn text color="primary" @click="menu1 = false">Cancel</v-btn>
+	    				<v-btn text color="primary" @click="$refs.menu1.save(filter.date_min)">Save</v-btn>
+	    			</v-date-picker>
+    			</v-menu>
+    		</v-col>
+
+    		<v-col cols="12" sm="4">
+    			<v-menu
+	    			ref="menu2"
+	    			v-model="menu2"
+	    			:close-on-content-click="false"
+	    			:return-value.sync="filter.date_max"
+	    			transition="scale-transition"
+	    			offset-y
+	    			max-width="290px">
+    				<template v-slot:activator="{ on }">
+    					<v-text-field
+    						v-model="filter.date_max"
+    						label="Date Max."
+    						prepend-icon="mdi-calendar-multiple"
+    						readonly
+    						v-on="on"></v-text-field>
+    				</template>
+    				<v-date-picker v-model="filter.date_max">
+	    				<v-spacer></v-spacer>
+	    				<v-btn text color="primary" @click="menu2 = false">Cancel</v-btn>
+	    				<v-btn text color="primary" @click="$refs.menu2.save(filter.date_max)">Save</v-btn>
+	    			</v-date-picker>
+    			</v-menu>
     		</v-col>
 
     		<v-col cols="12" sm="12">
@@ -101,16 +151,24 @@
 					{ name : "Create Time", key : "created_at" },
 					{ name : "Action", disort : true }
 				],
+
+				menu1 : null,
+				menu2 : null,
+
 				breadcrumbs : [
 					{ text : 'Financial', disabled : true },
 				],
-				fkey : ['username', 'category', 'type', 'amount_min', 'amount_max'],
+
+				fkey : ['username', 'category', 'type', 'amount_min', 'amount_max', 'date_min', 'date_max'],
+
 				filter : {
 					username : null,
 					category : null,
 					type : null,
 					amount_min : null,
 					amount_max : null,
+					date_min : null,
+					date_max : null
 				}
 			}
 		},
@@ -136,6 +194,8 @@
 					type : null,
 					amount_min : null,
 					amount_max : null,
+					date_min : null,
+					date_max : null
 				}
 				this.dataFilter()
 			}
