@@ -7,9 +7,9 @@ use App\Financial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
-class StatisticFinancialController extends Controller
+class StatisticController extends Controller
 {
-	public function index()
+	public function financial()
 	{
 		return Financial::join('users', 'financial.user_id', '=', 'users.id')
 		->select(['users.name as username', 'financial.type', 'financial.amount'])

@@ -4,7 +4,7 @@
 		
     	<v-row>
     		<v-col cols="12" sm="12">
-    			<h4>Filter Select</h4>
+	    		<h4><v-icon>mdi-select-group</v-icon> Filter by Select</h4>
     		</v-col>
 
     		<v-col cols="12" sm="4">
@@ -20,7 +20,7 @@
     		</v-col>
 
     		<v-col cols="12" sm="12">
-    			<h4>Filter Amount</h4>
+    			<h4><v-icon>mdi-cash-multiple</v-icon> Filter by Amount</h4>
     		</v-col>
 
     		<v-col cols="12" sm="4">
@@ -32,7 +32,7 @@
     		</v-col>
 
     		<v-col cols="12" sm="12">
-    			<h4>Filter Date</h4>
+    			<h4><v-icon>mdi-calendar-multiple</v-icon> Filter by Date</h4>
     		</v-col>
 
     		<v-col cols="12" sm="4">
@@ -48,14 +48,14 @@
     					<v-text-field
     						v-model="filter.date_min"
     						label="Date Min."
-    						prepend-icon="mdi-calendar-multiple"
     						readonly
-    						v-on="on"></v-text-field>
+    						v-on="on"
+    						type="date"></v-text-field>
     				</template>
     				<v-date-picker v-model="filter.date_min">
 	    				<v-spacer></v-spacer>
-	    				<v-btn text color="primary" @click="menu1 = false">Cancel</v-btn>
-	    				<v-btn text color="primary" @click="$refs.menu1.save(filter.date_min)">Save</v-btn>
+	    				<v-btn text color="primary" @click="menu1 = false"><strong>Cancel</strong></v-btn>
+	    				<v-btn text color="primary" @click="$refs.menu1.save(filter.date_min)"><strong>Save</strong></v-btn>
 	    			</v-date-picker>
     			</v-menu>
     		</v-col>
@@ -73,14 +73,14 @@
     					<v-text-field
     						v-model="filter.date_max"
     						label="Date Max."
-    						prepend-icon="mdi-calendar-multiple"
     						readonly
-    						v-on="on"></v-text-field>
+    						v-on="on"
+    						type="date"></v-text-field>
     				</template>
     				<v-date-picker v-model="filter.date_max">
 	    				<v-spacer></v-spacer>
-	    				<v-btn text color="primary" @click="menu2 = false">Cancel</v-btn>
-	    				<v-btn text color="primary" @click="$refs.menu2.save(filter.date_max)">Save</v-btn>
+	    				<v-btn text color="primary" @click="menu2 = false"><strong>Cancel</strong></v-btn>
+	    				<v-btn text color="primary" @click="$refs.menu2.save(filter.date_max)"><strong>Save</strong></v-btn>
 	    			</v-date-picker>
     			</v-menu>
     		</v-col>

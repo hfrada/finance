@@ -50,18 +50,16 @@
 		{
 			insertData()
 			{
-					axios.post(`/v1/finance`, {
+				axios.post(`/v1/finance`, {
 					type : this.data.type,
 					amount : this.data.amount,
 					category_id : this.data.category_id
 				}).then((res)=>{
 					this.$router.push({name : 'financialMain'});
 					this.$toastr.success('Data Created!', 'Success!');
-					toastr.options = {'closeButton' : true}
 				}).catch((err) => {
 					err.response.data.messages.forEach((message) => {
 						this.$toastr.error(message, 'Error!');
-						toastr.options = {'closeButton' : true}
 					});
 				});
 			},
@@ -75,11 +73,9 @@
 				}).then((res)=>{
 					this.$router.push({name : 'financialMain'});
 					this.$toastr.success('Data Edited!', 'Success!');
-					toastr.options = {'closeButton' : true}
 				}).catch((err) => {
 					err.response.data.message.forEach((message) => {
 						this.$toastr.error(message, 'Error!');
-						toastr.options = {'closeButton' : true}
 					})
 				});
 			},
@@ -87,7 +83,7 @@
 			getData(id)
 			{
 				axios.get(`/v1/finance/${id}`).then((res)=>{
-						this.data = res.data
+					this.data = res.data
 				});
 			}
 		},

@@ -2030,17 +2030,9 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         _this.$toastr.success('Data Created!', 'Success!');
-
-        toastr.options = {
-          'closeButton': true
-        };
       })["catch"](function (err) {
         err.response.data.messages.forEach(function (message) {
           _this.$toastr.error(message, 'Error!');
-
-          toastr.options = {
-            'closeButton': true
-          };
         });
       });
     },
@@ -2053,17 +2045,9 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         _this2.$toastr.success('Data Edited!', 'Success!');
-
-        toastr.options = {
-          'closeButton': true
-        };
       })["catch"](function (err) {
         err.response.data.messages.forEach(function (message) {
           _this2.$toastr.error(message, 'Error!');
-
-          toastr.options = {
-            'closeButton': true
-          };
         });
       });
     },
@@ -2568,17 +2552,9 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         _this.$toastr.success('Data Created!', 'Success!');
-
-        toastr.options = {
-          'closeButton': true
-        };
       })["catch"](function (err) {
         err.response.data.messages.forEach(function (message) {
           _this.$toastr.error(message, 'Error!');
-
-          toastr.options = {
-            'closeButton': true
-          };
         });
       });
     },
@@ -2595,17 +2571,9 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         _this2.$toastr.success('Data Edited!', 'Success!');
-
-        toastr.options = {
-          'closeButton': true
-        };
       })["catch"](function (err) {
         err.response.data.message.forEach(function (message) {
           _this2.$toastr.error(message, 'Error!');
-
-          toastr.options = {
-            'closeButton': true
-          };
         });
       });
     },
@@ -39891,7 +39859,14 @@ var render = function() {
         "v-row",
         [
           _c("v-col", { attrs: { cols: "12", sm: "12" } }, [
-            _c("h4", [_vm._v("Filter Select")])
+            _c(
+              "h4",
+              [
+                _c("v-icon", [_vm._v("mdi-select-group")]),
+                _vm._v(" Filter by Select")
+              ],
+              1
+            )
           ]),
           _vm._v(" "),
           _c(
@@ -39949,7 +39924,14 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("v-col", { attrs: { cols: "12", sm: "12" } }, [
-            _c("h4", [_vm._v("Filter Amount")])
+            _c(
+              "h4",
+              [
+                _c("v-icon", [_vm._v("mdi-cash-multiple")]),
+                _vm._v(" Filter by Amount")
+              ],
+              1
+            )
           ]),
           _vm._v(" "),
           _c(
@@ -39989,7 +39971,14 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("v-col", { attrs: { cols: "12", sm: "12" } }, [
-            _c("h4", [_vm._v("Filter Date")])
+            _c(
+              "h4",
+              [
+                _c("v-icon", [_vm._v("mdi-calendar-multiple")]),
+                _vm._v(" Filter by Date")
+              ],
+              1
+            )
           ]),
           _vm._v(" "),
           _c(
@@ -40027,8 +40016,8 @@ var render = function() {
                               {
                                 attrs: {
                                   label: "Date Min.",
-                                  "prepend-icon": "mdi-calendar-multiple",
-                                  readonly: ""
+                                  readonly: "",
+                                  type: "date"
                                 },
                                 model: {
                                   value: _vm.filter.date_min,
@@ -40079,7 +40068,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Cancel")]
+                        [_c("strong", [_vm._v("Cancel")])]
                       ),
                       _vm._v(" "),
                       _c(
@@ -40092,7 +40081,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Save")]
+                        [_c("strong", [_vm._v("Save")])]
                       )
                     ],
                     1
@@ -40139,8 +40128,8 @@ var render = function() {
                               {
                                 attrs: {
                                   label: "Date Max.",
-                                  "prepend-icon": "mdi-calendar-multiple",
-                                  readonly: ""
+                                  readonly: "",
+                                  type: "date"
                                 },
                                 model: {
                                   value: _vm.filter.date_max,
@@ -40191,7 +40180,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Cancel")]
+                        [_c("strong", [_vm._v("Cancel")])]
                       ),
                       _vm._v(" "),
                       _c(
@@ -40204,7 +40193,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Save")]
+                        [_c("strong", [_vm._v("Save")])]
                       )
                     ],
                     1
@@ -98182,14 +98171,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************!*\
   !*** ./resources/js/financial/form.vue ***!
   \*****************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _form_vue_vue_type_template_id_2d094f88___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form.vue?vue&type=template&id=2d094f88& */ "./resources/js/financial/form.vue?vue&type=template&id=2d094f88&");
 /* harmony import */ var _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./form.vue?vue&type=script&lang=js& */ "./resources/js/financial/form.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -98219,7 +98209,7 @@ component.options.__file = "resources/js/financial/form.vue"
 /*!******************************************************************!*\
   !*** ./resources/js/financial/form.vue?vue&type=script&lang=js& ***!
   \******************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98432,7 +98422,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios["delete"]("".concat(this.url, "/").concat(id)).then(function (res) {
-        _this2.getData();
+        _this2.loadData();
+
+        _this2.$toastr.success('Data Deleted!', 'Success!');
       });
     }
   },

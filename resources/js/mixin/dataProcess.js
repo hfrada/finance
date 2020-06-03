@@ -1,7 +1,6 @@
 export default {
 	
 	data(){
-
 		let current = this.$route.query.page ? this.$route.query.page : 1;
 		return {
 			items : [],
@@ -12,7 +11,6 @@ export default {
 				prev : 1,
 			}
 		}
-
 	},
 
 	mounted() {
@@ -20,16 +18,13 @@ export default {
     },
 
     methods : {
-
     	loadData(){
         	axios.get(this.url, {
         		params: Object.assign({}, this.$route.query)
         	})
 			.then((res)=>{
-
 	        	this.items = res.data.data;
 	        	this.paginate(res.data)
-	        	
         	});
         },
 
@@ -42,7 +37,8 @@ export default {
 
         deleteData(id){
 			axios.delete(`${this.url}/${id}`).then((res)=>{
-				this.getData()
+				this.loadData();
+				this.$toastr.success('Data Deleted!', 'Success!')
 			});	
 		},
     },
@@ -50,7 +46,6 @@ export default {
     watch : {
     	
     	'$route'(to, from){
-
 			this.loadData()
 		},
 

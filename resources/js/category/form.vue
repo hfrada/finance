@@ -16,7 +16,9 @@
 				data : {
 					category : null,
 				},
+
 				id : id,
+				
 				breadcrumbs : [
 					{ text : 'Category', disabled : false, href : '/#/category' },
 					{ text : id == 'create' ? 'Create' : 'Update', disabled : true},
@@ -29,11 +31,9 @@
 				axios.post(`/v1/category`, this.data).then((res) => {
 					this.$router.push({name: 'categoryMain'});
 					this.$toastr.success('Data Created!', 'Success!');
-					toastr.options = {'closeButton' : true}
 				}).catch((err) => {
 					err.response.data.messages.forEach((message) => {
 						this.$toastr.error(message, 'Error!');
-						toastr.options = {'closeButton' : true}
 					});
 				});	
 			},
@@ -41,11 +41,9 @@
 				axios.put(`/v1/category/${id}`, this.data).then((res)=>{
 					this.$router.push({name: 'categoryMain'});
 					this.$toastr.success('Data Edited!', 'Success!');
-					toastr.options = {'closeButton' : true}
 				}).catch((err) => {
 					err.response.data.messages.forEach((message) => {
 						this.$toastr.error(message, 'Error!');
-						toastr.options = {'closeButton' : true}
 					});
 				});	
 			},

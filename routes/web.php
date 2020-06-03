@@ -17,16 +17,22 @@ Route::middleware('auth:web')->get('/', function () {
     return view('vue');
 });
 
+Route::get('/coba', function() {
+	return view('coba');
+});
+
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
 
 Route::middleware('auth:web')->prefix('v1')->group(function() {
-	Route::get('statistic/finance', 'StatisticFinancialController@index');
-	Route::get('statistic/period-chart', 'StatisticFinancialController@periodChart');
+	Route::get('statistic/finance', 'StatisticController@finanial');
+	Route::get('statistic/category', 'StatisticController@category');
+	Route::get('statistic/period-chart', 'StatisticController@periodChart');
 	Route::get('users/names', function(){
-		return [ 'data' => App\User::pluck('name')];
+		return ['data' => App\User::pluck('name')];
 	});
+	
 	Route::resource('category', 'CategoryController');
 	Route::resource('finance', 'FinancialController');
 });
