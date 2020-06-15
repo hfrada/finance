@@ -5,7 +5,7 @@
     			<v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>	
     		</v-list-item-avatar>
 
-    	<v-list-item-title>John Leider</v-list-item-title>
+    	<v-list-item-title>{{ data.name }}</v-list-item-title>
 
     	<v-btn icon @click.stop="mini = !mini">
     		<v-icon>mdi-chevron-left</v-icon>
@@ -20,26 +20,49 @@
 	    			<v-icon>{{ item.icon }}</v-icon>
 	    		</v-list-item-icon>
 
-				<v-list-item-content>
-					<v-list-item-title>{{ item.title }}</v-list-item-title>
-				</v-list-item-content>
-			</v-list-item>
-		</v-list>
-	</v-navigation-drawer>
+  				<v-list-item-content>
+  					<v-list-item-title>{{ item.title }}</v-list-item-title>
+  				</v-list-item-content>
+  			</v-list-item>
+  		</v-list>
+	  </v-navigation-drawer>
 </template>
 
 <script>
-  export default {
+
+  export default 
+  {
     data () {
       return {
+        data : {
+          name : null,
+          access_name : null,
+          permission : null
+        },
+
+        url : 'v1/admin/data',
         drawer: true,
         items: [
           { title: 'Dasboard', icon: 'mdi-home-city', link : '/' },
+          { title: 'Role', icon: 'mdi-segment', link : '/role' },
           { title: 'Category', icon: 'mdi-tag-multiple', link : '/category' },
           { title: 'Financial', icon: 'mdi-cash-multiple', link : '/financial' },
         ],
         mini: true,
       }
     },
+
+    methods : {
+      getData()
+      {
+        axios.get(`/v1/admin/data`).then((res) => {
+          this.data = res.data[0]
+        });
+      }
+    },
+
+    mounted() {
+      this.getData()
+    }
   }
 </script>

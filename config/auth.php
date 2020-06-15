@@ -46,6 +46,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'super_user' => [
+            'driver' => 'session',
+            'provider' => 'super_users'
+        ]
     ],
 
     /*
@@ -71,10 +76,11 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'super_users' => [
+            'driver' => 'eloquent',
+            'model' => App\SuperUsers::class
+            // 'table' => 'super_users',
+        ],
     ],
 
     /*
@@ -99,6 +105,13 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+
+        'super_users' => [
+            'provider' => 'super_users',
+            'table' => 'password_reset',
+            'expire' => 60,
+            'throttle' => 60
+        ]
     ],
 
     /*

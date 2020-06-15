@@ -12,6 +12,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Vuetify from 'vuetify';
 import VueToastr2 from 'vue-toastr-2';
+// import Permissions from './mixin/permissions';
 import 'vuetify/dist/vuetify.min.css';
 import '@mdi/font/css/materialdesignicons.css';
 import 'vue-toastr-2/dist/vue-toastr-2.min.css';
@@ -51,6 +52,9 @@ const routes = [
  	// financial
  	{ path: '/financial', name: 'financialMain', component: require('./financial/main.vue').default},
  	{ path: '/financial/:id', name: 'financialForm', component: require('./financial/form.vue').default},
+ 	// role
+ 	{ path: '/role', name: 'roleMain', component: require('./role/main.vue').default},
+ 	{ path: '/role/:id', name: 'roleForm', component: require('./role/form.vue').default},
 ];
 
 const router = new VueRouter({

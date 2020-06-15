@@ -6,7 +6,6 @@ use App\Financial;
 use App\User;
 use App\Category;
 use Faker\Generator as Faker;
-use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------

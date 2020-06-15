@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,6 +14,8 @@ class DatabaseSeeder extends Seeder
     	factory(App\User::class, 10)->create();
 
         $this->call([
+            RoleSeeder::class,
+            SuperUsersSeeder::class,
             CategorySeeder::class,
             FinancialSeeder::class
         ]);

@@ -6,6 +6,7 @@
     		v-model="data.type"
     		label="Type"
     		:items="['pay', 'amount']">
+    		required
     	</v-select>
 
     	<v-text-field v-model="data.amount" label="Amount" required></v-text-field>	

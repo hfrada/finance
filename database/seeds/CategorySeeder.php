@@ -1,8 +1,7 @@
 <?php
 
+use App\Category;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class CategorySeeder extends Seeder
 {
@@ -13,9 +12,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-    	$category = ['shopping', 'hobbies', 'saving', 'banking', 'food', 'vacation', 'transfer', 'gift/present', 'salary', 'profit'];
-        foreach ($category as $cat) {
-        	factory(App\Category::class)->create(['category' => $cat]);
-        }
+    	$category = ['shopping', 'hobbies', 'saving', 'banking', 'food', 'vacation', 'transfer', 'gift/present', 'salary', 'profit', 'other'];
+        foreach ($category as $cat) Category::insert(['category' => $cat]);
     }
 }
