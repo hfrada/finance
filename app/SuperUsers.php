@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -56,5 +55,17 @@ class SuperUsers extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function hasPermission($id, $permission)
+    {
+        $data = SuperUsers::join('role', 'super_users.role_id', '=', 'role.id')
+            ->where('super_users.id', '=', $id)
+            ->pluck('permission')
+            ->first();
+
+        $data = explode(', ', $data);
+        
+        return $data;
     }
 }

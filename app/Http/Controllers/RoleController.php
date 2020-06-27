@@ -39,7 +39,7 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'access_name' => 'required',
             'permission' => 'required'
         ]);
 
@@ -51,7 +51,7 @@ class RoleController extends Controller
                 'messages' => $validator->messages()->all()
             ], 500);
 
-        if (Role::create($request->only(['name', 'permission']))) return ['messages' => 'data created!'];
+        if (Role::create($request->only(['access_name', 'permission']))) return ['messages' => 'data created!'];
         else return response(['messages' => 'failed created!'], 500);
     }
 
@@ -90,7 +90,7 @@ class RoleController extends Controller
         if ($role = Role::find($id)) {
             
             $validator = Validator::make($request->all(), [
-                'name' => 'required',
+                'access_name' => 'required',
                 'permission' => 'required',
             ]);
 
@@ -100,7 +100,7 @@ class RoleController extends Controller
                     'message' => $validator->messages()->all()
                 ], 500);
 
-            if ($role->update($request->only(['name', 'permission']))) return ['message' => 'data updated'];
+            if ($role->update($request->only(['access_name', 'permission']))) return ['message' => 'data updated'];
             else return response(['message' => 'failed update!'], 500);
 
         }

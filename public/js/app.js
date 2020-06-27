@@ -2355,6 +2355,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2363,7 +2364,6 @@ __webpack_require__.r(__webpack_exports__);
         access_name: null,
         permission: null
       },
-      url: 'v1/admin/data',
       drawer: true,
       items: [{
         title: 'Dasboard',
@@ -2390,7 +2390,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get("/v1/admin/data").then(function (res) {
-        _this.data = res.data[0];
+        _this.data = res.data;
       });
     }
   },
@@ -2565,7 +2565,7 @@ __webpack_require__.r(__webpack_exports__);
     insertData: function insertData() {
       var _this = this;
 
-      axios.post("/v1/finance", {
+      axios.post("/v1/financial", {
         type: this.data.type,
         amount: this.data.amount,
         category_id: this.data.category_id
@@ -2584,7 +2584,7 @@ __webpack_require__.r(__webpack_exports__);
     updateData: function updateData(id) {
       var _this2 = this;
 
-      axios.put("/v1/finance/".concat(id), {
+      axios.put("/v1/financial/".concat(id), {
         type: this.data.type,
         amount: this.data.amount,
         category_id: this.data.category_id
@@ -2603,7 +2603,7 @@ __webpack_require__.r(__webpack_exports__);
     getData: function getData(id) {
       var _this3 = this;
 
-      axios.get("/v1/finance/".concat(id)).then(function (res) {
+      axios.get("/v1/financial/".concat(id)).then(function (res) {
         _this3.data = res.data;
       });
     }
@@ -2768,7 +2768,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       search: null,
-      url: '/v1/finance',
+      url: '/v1/financial',
       headers: [{
         name: "Username",
         key: "username"
@@ -2903,7 +2903,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -6934,7 +6933,7 @@ exports.push([module.i, "/*\r\n * Note that this is toastr v2.1.3, the \"latest\
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css":
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css?bdb9":
 /*!***********************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vuetify/dist/vuetify.min.css ***!
   \***********************************************************************************************************************************/
@@ -39761,6 +39760,8 @@ var render = function() {
           _vm._v(" "),
           _c("v-list-item-title", [_vm._v(_vm._s(_vm.data.name))]),
           _vm._v(" "),
+          _c("v-list-item-title", [_vm._v(_vm._s(_vm.data.access_name))]),
+          _vm._v(" "),
           _c(
             "v-btn",
             {
@@ -40622,8 +40623,7 @@ var render = function() {
         attrs: {
           label: "Permission",
           items: ["financial", "category"],
-          multiple: "",
-          required: ""
+          multiple: ""
         },
         model: {
           value: _vm.data.permission,
@@ -97667,7 +97667,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_vue__;
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./vuetify.min.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css");
+var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./vuetify.min.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css?bdb9");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 

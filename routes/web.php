@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:super_user')->get('/', function () {
-    return view('vue');
-});
+Route::middleware('auth:super_user')->get('/admin', function () {return view('vue');});
 
 // Route::get('/coba', function() {
 // 	return view('coba');
@@ -24,33 +22,30 @@ Route::middleware('auth:super_user')->get('/', function () {
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
+// Route::get('/', 'HomeController@index');
 
-Route::get('/admin', function() {
-	return view('vue');
-})->name('adminPage');
-
+Route::get('/admin', function() {return view('vue');})->name('adminPage');
 Route::get('/admin-login', 'Auth\AdminLoginController@loginForm');
 Route::post('/admin-login', [
 	'as' => 'admin-login',
 	'uses' => 'Auth\AdminLoginController@login'
 ]);
 
-Route::get('/admin-register', 'Auth\AdminLoginController@registerForm');
-Route::post('/admin-register', 'Auth\AdminLoginController@register');
-
 Route::middleware('auth:super_user')->prefix('v1')->group(function() {
 	// Statistic
-	Route::get('statistic/finance', 'StatisticController@finanial');
-	Route::get('statistic/category', 'StatisticController@category');
+	Route::get('statistic/financial', 'StatisticController@financial');
+	// Route::get('statistic/category', 'StatisticController@category');
 	Route::get('statistic/period-chart', 'StatisticController@periodChart');
 	
 	// Single Data
-	Route::get('user/names', 'SingleDataController@userNames');
-	Route::get('admin/data', 'SingleDataController@selfData');
-	
+	Route::get('admin/data', 'SingleDataController@roleData');
+
 	// Resource Data
-	Route::resource('category', 'CategoryController');
-	Route::resource('finance', 'FinancialController');
 	Route::resource('role', 'RoleController');
+	
+	// Route::middleware('permission:financial,category')->group(function() {
+		Route::get('user/names', 'SingleDataController@userNames');
+		Route::resource('category', 'CategoryController')->middleware('permission:category');
+		Route::resource('financial', 'FinancialController')->middleware('permission:financial');
+	// });
 });

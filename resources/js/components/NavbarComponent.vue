@@ -6,6 +6,7 @@
     		</v-list-item-avatar>
 
     	<v-list-item-title>{{ data.name }}</v-list-item-title>
+      <v-list-item-title>{{ data.access_name }}</v-list-item-title>
 
     	<v-btn icon @click.stop="mini = !mini">
     		<v-icon>mdi-chevron-left</v-icon>
@@ -32,7 +33,7 @@
 
   export default 
   {
-    data () {
+    data() {
       return {
         data : {
           name : null,
@@ -40,7 +41,6 @@
           permission : null
         },
 
-        url : 'v1/admin/data',
         drawer: true,
         items: [
           { title: 'Dasboard', icon: 'mdi-home-city', link : '/' },
@@ -56,7 +56,7 @@
       getData()
       {
         axios.get(`/v1/admin/data`).then((res) => {
-          this.data = res.data[0]
+          this.data = res.data
         });
       }
     },

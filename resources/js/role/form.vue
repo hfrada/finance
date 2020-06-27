@@ -8,8 +8,7 @@
     		v-model="data.permission"
     		label="Permission"
     		:items="['financial', 'category']"
-    		multiple
-    		required></v-select>
+    		multiple></v-select>
 
     	<v-btn color="primary" v-on:click="id == 'create'? insertData() : updateData(id)">{{ id == 'create' ? 'Create' : 'Update' }}</v-btn>
 	</v-container>
@@ -19,7 +18,7 @@
 
 		data(){
 			let id = this.$route.params.id;
-			return{
+			return {
 				data : {
 					access_name : null,
 					permission : null

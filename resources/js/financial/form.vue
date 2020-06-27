@@ -1,20 +1,20 @@
 <template>
-	<v-container>
-    	<v-breadcrumbs :items="breadcrumbs"></v-breadcrumbs>	
+		<v-container>
+	    	<v-breadcrumbs :items="breadcrumbs"></v-breadcrumbs>	
 
-    	<v-select
-    		v-model="data.type"
-    		label="Type"
-    		:items="['pay', 'amount']">
-    		required
-    	</v-select>
+	    	<v-select
+	    		v-model="data.type"
+	    		label="Type"
+	    		:items="['pay', 'amount']">
+	    		required
+	    	</v-select>
 
-    	<v-text-field v-model="data.amount" label="Amount" required></v-text-field>	
+	    	<v-text-field v-model="data.amount" label="Amount" required></v-text-field>	
 
-    	<select-category v-model="data.category_id"></select-category>
+	    	<select-category v-model="data.category_id"></select-category>
 
-    	<v-btn color="primary" v-on:click="id == 'create'? insertData() : updateData(id)">{{ id == 'create' ? 'Create' : 'Update' }}</v-btn>
-	</v-container>
+	    	<v-btn color="primary" v-on:click="id == 'create'? insertData() : updateData(id)">{{ id == 'create' ? 'Create' : 'Update' }}</v-btn>
+		</v-container>
 </template>
 <script>
 
@@ -51,7 +51,7 @@
 		{
 			insertData()
 			{
-				axios.post(`/v1/finance`, {
+				axios.post(`/v1/financial`, {
 					type : this.data.type,
 					amount : this.data.amount,
 					category_id : this.data.category_id
@@ -67,7 +67,7 @@
 
 			updateData(id)
 			{
-				axios.put(`/v1/finance/${id}`, {
+				axios.put(`/v1/financial/${id}`, {
 					type : this.data.type,
 					amount : this.data.amount,
 					category_id : this.data.category_id
@@ -83,7 +83,7 @@
 
 			getData(id)
 			{
-				axios.get(`/v1/finance/${id}`).then((res)=>{
+				axios.get(`/v1/financial/${id}`).then((res)=>{
 					this.data = res.data
 				});
 			}

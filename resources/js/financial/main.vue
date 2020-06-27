@@ -142,7 +142,7 @@
 		{
 			return {
 				search : null,
-				url : '/v1/finance',
+				url : '/v1/financial',
 				headers : [
 					{ name : "Username", key : "username" },
 					{ name : "Type", key : "type" },

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     protected $table = 'role';
-	protected $fillable = ['name', 'permission'];
+	protected $fillable = ['access_name', 'permission'];
 
     public function superuser() 
     {
