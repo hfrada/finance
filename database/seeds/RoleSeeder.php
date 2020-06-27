@@ -16,7 +16,7 @@ class RoleSeeder extends Seeder
 
         foreach ($name as $key)
             Role::insert([
-                'name' => $key,
+                'access_name' => $key,
                 'permission' => ($key != 'root') ? ' ' : 'financial, category'
             ]);
     }
