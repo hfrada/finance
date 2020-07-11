@@ -25,13 +25,6 @@
             @yield('content') 
         </main>
     </div>
-<!--     <script>
-        @auth
-            window.Permissions = {!! json_encode(Auth::guard('super_user')->user()->allPermissions, true) !!};
-        @else
-            window.Permissions = [];
-        @endauth
-    </script> -->
 </body>
 </html>
 

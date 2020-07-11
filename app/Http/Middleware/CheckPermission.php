@@ -21,9 +21,9 @@ class CheckPermission
         $userPermission = explode(',', Auth::guard('super_user')->user()->role->permission);
 
         foreach ($userPermission as $value)
-            if (in_array($value, $permission))
+            if (in_array($value, $permission)) 
                 return $next($request);
 
-        return response('ibnu kambing, gak ndue permission ser mlebu kene!!!', 401);
+        return response('You havent permission to access this url!', 401);
     }
 }

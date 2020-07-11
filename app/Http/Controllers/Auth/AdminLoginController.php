@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\SuperUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class AdminLoginController extends Controller
@@ -14,51 +13,32 @@ class AdminLoginController extends Controller
 
     protected $guard = 'super_user';
 
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/admin';
 
     public function __construct()
     {
     	$this->middleware('guest')->except('logout');
     }
 
-    public function loginForm()
-    {
-    	return view('auth.adminLogin');
-    }
-
     public function guard()
     {
-    	return auth()->guard('super_user');
+    	return Auth::guard('super_user');
     }
 
-    public function registerForm()
+    public function loginForm()
     {
-    	return view('auth.adminRegister');
-    }
-
-    public function register(Request $request)
-    {
-    	$request->validate([
-    		'name' => 'required',
-    		'email' => 'required',
-    		'password' => 'required'
-    	]);
-
-    	SuperUsers::create([
-    		'name' => $request->name,
-    		'email' => $request->email,
-    		'password' => bcrypt($request->password),
-    	]);
-
-    	return redirect()->route('admin-login')->with('success', 'Registration success!');
+        return view('auth.adminLogin');
     }
 
     public function login(Request $request)
     {
-    	if (auth()->guard('super_user')->attempt(['email' => $request->email, 'password' => $request->password])) return redirect()->route('adminPage');
+    	if (Auth::guard('super_user')->attempt(['email' => $request->email, 'password' => $request->password])) return redirect()->route('adminPage');
     	
     	return back()->withErrors(['email' => 'Email or password are wrong!']);
+    }
 
-    	// if (Auth::guard('super_user')->check() == true) return redirect()->route('adminPage');
+    public function logout()
+    {
+        return Auth::guard('super_user')->logout();
     }
 }

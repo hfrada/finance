@@ -24,9 +24,9 @@
 </template>
 <script>
 	// components
-	import dataTable from '../components/DataTableComponent.vue';
+	import dataTable from '../../Components/DataTableComponent.vue';
 	// mixin
-	import dataProcess from '../mixin/dataProcess.js'
+	import dataProcess from '../../Services/mixin/dataProcess.js'
 
 	export default{
 

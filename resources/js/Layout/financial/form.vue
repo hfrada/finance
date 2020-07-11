@@ -18,7 +18,7 @@
 </template>
 <script>
 
-	import selectCategory from '../components/SelectCategoryComponent.vue';
+	import selectCategory from '../../Components/SelectCategoryComponent.vue';
 
 	export default
 	{

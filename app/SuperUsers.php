@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -41,31 +42,19 @@ class SuperUsers extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // public function getAllPermissionsAttribute()
-    // {
-    //     $permissions = [];
-
-    //     foreach (Permission::all() as $permission) 
-    //         if (auth()->guard('super_user')->user()->can($permission->name)) 
-    //             $permissions[] = $permission->name;
-
-    //     return $permissions;            
-    // }
-
     public function role()
     {
         return $this->belongsTo(Role::class);
     }
 
-    public function hasPermission($id, $permission)
+    public function getAllPermissionsAttribute()
     {
-        $data = SuperUsers::join('role', 'super_users.role_id', '=', 'role.id')
-            ->where('super_users.id', '=', $id)
-            ->pluck('permission')
-            ->first();
+        $permissions = [];
 
-        $data = explode(', ', $data);
-        
-        return $data;
+        foreach (Permission::all() as $permission) 
+            if (auth()->guard('super_user')->user()->role->can($permission->name)) 
+                $permissions[] = $permission->name;
+
+        return $permissions;            
     }
 }

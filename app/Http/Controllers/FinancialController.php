@@ -69,7 +69,7 @@ class FinancialController extends Controller
             'category_id' => 'required'
         ]);
 
-        $request->merge(['user_id' => Auth::user()->id]);
+        $request->merge(['user_id' => Auth::guard('super_user')->user()->id]);
 
         if ($validator->fails())
             return response([
@@ -118,9 +118,10 @@ class FinancialController extends Controller
             $validator = Validator::make($request->all(), [
                 'type' => 'required',
                 'amount' => 'required',
-                'user_id' => 'required',
                 'category_id' => 'required'
             ]);
+
+            $request->merge(['user_id' => Auth::guard('super_user')->user()->id]);
 
             if ($validator->fails())
                 return response([

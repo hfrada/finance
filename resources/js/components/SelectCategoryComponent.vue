@@ -1,26 +1,23 @@
 <template>
-	<v-select 
-		label="Category"
-		item-text="category" 
-		item-value="id" 
-		v-model="value"
-		:items="items"
-		>
-	</v-select>
+	<div v-if="$store.state.category">
+		<v-select 
+			label="Category"
+			item-text="category" 
+			item-value="id" 
+			v-model="value"
+			:items="$store.state.category"
+			>
+		</v-select>
+	</div>
 </template>
 <script>
-	
-	import dataProcess from '../mixin/dataProcess.js';
 
 	export default
 	{
-		mixins : [dataProcess],
-
 		data()
 		{
 			return {
-				value : null,
-				url : '/v1/category?no_filter=true'
+				value : null
 			}
 		},
 

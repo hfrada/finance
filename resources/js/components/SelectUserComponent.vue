@@ -1,24 +1,20 @@
 <template>
-	<v-select 
+	<div v-if="$store.state.usersNames.data">
+		<v-select 
 		label="User"
 		v-model="value"
-		:items="items"
+		:items="$store.state.usersNames.data"
 		>
 	</v-select>
+	</div>
 </template>
 <script>
-	
-	import dataProcess from '../mixin/dataProcess.js';
-
 	export default
 	{
-		mixins : [dataProcess],
-
 		data()
 		{
 			return {
 				value : null,
-				url : '/v1/user/names'
 			}
 		},
 

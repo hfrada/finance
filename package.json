@@ -25,7 +25,10 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "toastr": "^2.1.4",
         "vue-router": "^3.1.6",
-        "vuetify": "^2.2.28"
+        "vue-toastr-2": "0.0.10",
+        "vuetify": "^2.2.28",
+        "vuex": "^3.4.0"
     }
 }

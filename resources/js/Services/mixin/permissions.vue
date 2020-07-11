@@ -1,4 +1,4 @@
-<!-- <script>
+<script>
 	export default 
 	{
 		methods : {
@@ -7,4 +7,4 @@
 			}
 		}
 	}
-</script> -->
+</script>

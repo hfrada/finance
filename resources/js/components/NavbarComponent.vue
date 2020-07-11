@@ -25,6 +25,14 @@
   					<v-list-item-title>{{ item.title }}</v-list-item-title>
   				</v-list-item-content>
   			</v-list-item>
+        <v-list-item link>
+          <v-list-item-icon>
+            <v-icon>mdi-logout</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title @click="logout()">Logout</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
   		</v-list>
 	  </v-navigation-drawer>
 </template>
@@ -43,22 +51,28 @@
 
         drawer: true,
         items: [
-          { title: 'Dasboard', icon: 'mdi-home-city', link : '/' },
-          { title: 'Role', icon: 'mdi-segment', link : '/role' },
-          { title: 'Category', icon: 'mdi-tag-multiple', link : '/category' },
-          { title: 'Financial', icon: 'mdi-cash-multiple', link : '/financial' },
+          { title : 'Dasboard', icon : 'mdi-home-city', link : '/' },
+          { title : 'Role', icon : 'mdi-segment', link : '/role' },
+          { title : 'Category', icon : 'mdi-tag-multiple', link : '/category' },
+          { title : 'Financial', icon : 'mdi-cash-multiple', link : '/financial' },
         ],
         mini: true,
       }
     },
 
     methods : {
-      getData()
-      {
-        axios.get(`/v1/admin/data`).then((res) => {
+      getData() {
+        axios.get(`/store/admin/data`).then((res) => {
           this.data = res.data
         });
+      },
+
+      logout() {
+        return axios.get(`/v1/logout`).then(res => {
+          this.$router.go('/admin-login')
+        });
       }
+
     },
 
     mounted() {

@@ -14,38 +14,41 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:super_user')->get('/admin', function () {return view('vue');});
-
-// Route::get('/coba', function() {
-// 	return view('coba');
+// Route::get('/login', function() {
+// 	return view('auth\login');
 // });
 
 Auth::routes();
 
 // Route::get('/', 'HomeController@index');
 
-Route::get('/admin', function() {return view('vue');})->name('adminPage');
-Route::get('/admin-login', 'Auth\AdminLoginController@loginForm');
+Route::get('/admin-login', 'Auth\AdminLoginController@loginForm')->name('adminLogin');
 Route::post('/admin-login', [
 	'as' => 'admin-login',
 	'uses' => 'Auth\AdminLoginController@login'
 ]);
 
+Route::middleware('auth:super_user')->get('/admin', function () { return view('vue'); })->name('adminPage');
+
 Route::middleware('auth:super_user')->prefix('v1')->group(function() {
-	// Statistic
+
 	Route::get('statistic/financial', 'StatisticController@financial');
 	// Route::get('statistic/category', 'StatisticController@category');
 	Route::get('statistic/period-chart', 'StatisticController@periodChart');
-	
-	// Single Data
-	Route::get('admin/data', 'SingleDataController@roleData');
 
-	// Resource Data
+	Route::get('logout', 'Auth\AdminLoginController@logout');
+
 	Route::resource('role', 'RoleController');
 	
-	// Route::middleware('permission:financial,category')->group(function() {
-		Route::get('user/names', 'SingleDataController@userNames');
-		Route::resource('category', 'CategoryController')->middleware('permission:category');
-		Route::resource('financial', 'FinancialController')->middleware('permission:financial');
-	// });
+	Route::middleware('permission:category,financial')->group(function() {
+		Route::middleware('permission:financial')->resource('financial', 'FinancialController');
+		Route::middleware('permission:category')->resource('category', 'CategoryController');
+	});
+});
+
+Route::middleware('auth:super_user')->prefix('store')->group(function() {
+	Route::get('user/name', 'SingleDataController@userNames');
+	Route::get('permissions', 'SingleDataController@getPermission');
+	Route::get('category', 'SingleDataController@getCategory');
+	Route::get('admin/data', 'SingleDataController@roleData');
 });

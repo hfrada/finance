@@ -20,5 +20,12 @@
     </v-app>
 </div>
 <script src="{{ url (mix('/js/app.js')) }}" type="text/javascript"></script>
+<script>
+    @auth
+        window.Permissions = {!! json_encode(Auth::guard('super_user')->user()->role->permission, true) !!};
+    @else
+        window.Permissions = [];
+    @endauth
+</script>
 </body>
 </html>

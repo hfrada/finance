@@ -43,7 +43,7 @@ class RoleController extends Controller
             'permission' => 'required'
         ]);
 
-        $request->merge(['permission' => implode(', ', $request->permission)]);
+        $request->merge(['permission' => implode(',', $request->permission)]);
 
         if ($validator->fails())
             return response([
