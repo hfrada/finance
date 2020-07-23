@@ -9,7 +9,7 @@ class Role extends Model
     protected $table = 'role';
 	protected $fillable = ['access_name', 'permission'];
 
-    public function superuser() 
+    public function super_users() 
     {
     	return $this->hasMany(SuperUsers::class);
     }

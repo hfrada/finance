@@ -22,7 +22,8 @@
 <script src="{{ url (mix('/js/app.js')) }}" type="text/javascript"></script>
 <script>
     @auth
-        window.Permissions = {!! json_encode(Auth::guard('super_user')->user()->role->permission, true) !!};
+        window.Permissions = {!! json_encode(explode(',', Auth::guard('super_user')->user()->role->permission), true) !!};
+        console.log(window.Permissions);
     @else
         window.Permissions = [];
     @endauth

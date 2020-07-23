@@ -11,8 +11,12 @@ import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import Vuetify from 'vuetify';
 import VueToastr2 from 'vue-toastr-2';
+import VueApexCharts from 'vue-apexcharts';
+import ApexCharts from 'apexcharts';
+import Cropper from 'cropperjs';
 import Permissions from './Services/mixin/permissions';
 import { Store } from './Services/store/state.js';
+import { CropperProcess } from './Services/cropper/process.js';
 import 'vuetify/dist/vuetify.min.css';
 import '@mdi/font/css/materialdesignicons.css';
 import 'vue-toastr-2/dist/vue-toastr-2.min.css';
@@ -40,6 +44,7 @@ Vue.mixin(Permissions);
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('navbar-component', require('./Components/NavbarComponent.vue').default);
+Vue.component('apexcharts', VueApexCharts);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -50,6 +55,9 @@ Vue.component('navbar-component', require('./Components/NavbarComponent.vue').de
 const routes = [
 	// dashboard
 	{ path: '/', name: 'dashboard', component: require('./home.vue').default },
+    // profile
+    { path: '/profile', name: 'profileMain', component: require('./Layout/profile/main.vue').default },
+    { path: '/profile/:id', name: 'profileForm', component: require('./Layout/profile/form.vue').default },
 	// category,
  	{ path: '/category', name: 'categoryMain', component: require('./Layout/category/main.vue').default },
  	{ path: '/category/:id', name: 'categoryForm', component: require('./Layout/category/form.vue').default },

@@ -21,7 +21,7 @@ class SuperUsers extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password'
     ];
 
     /**
@@ -47,12 +47,17 @@ class SuperUsers extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function profile()
+    {
+        return $this->belongsTo(Profile::class);
+    }
+
     public function getAllPermissionsAttribute()
     {
         $permissions = [];
 
         foreach (Permission::all() as $permission) 
-            if (auth()->guard('super_user')->user()->role->can($permission->name)) 
+            if (Auth::guard('super_user')->user()->role->can($permission->name)) 
                 $permissions[] = $permission->name;
 
         return $permissions;            

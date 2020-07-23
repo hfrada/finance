@@ -19,10 +19,6 @@ class CreateRoleTable extends Migration
             $table->string('permission');
             $table->timestamps();
         });
-
-        Schema::table('super_users', function ($table) {
-            $table->bigInteger('role_id')->unsigned();
-        });
     }
 
     /**
@@ -33,9 +29,5 @@ class CreateRoleTable extends Migration
     public function down()
     {
         Schema::dropIfExists('role');
-        
-        Schema::table('super_users', function ($table) {
-            $table->dropColumn('role_id');
-        });
     }
 }
