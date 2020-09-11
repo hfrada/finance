@@ -161,6 +161,7 @@
 				menu2 : null,
 
 				breadcrumbs : [
+					{ text : 'mdi-home', disabled : true },
 					{ text : 'Financial', disabled : true },
 				],
 

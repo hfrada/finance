@@ -11,6 +11,6 @@ class FinancialSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Financial::class, 250)->create();
+        factory(App\Financial::class, 750)->create();
     }
 }
